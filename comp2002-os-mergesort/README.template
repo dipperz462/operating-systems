@@ -35,17 +35,14 @@ All group member names and student IDs
 A brief description of your implementation approach
 Any challenges you faced and how you solved them
 
-## Testing
-
+Testing
 Tested serial mergesort first using cutoff = 0, once that was verified the parallel mergesort was tested
 using cutoffs 1 to 10
 
-## Known Bugs
-
+Known Bugs
 List known bugs that you weren't able to fix (or ran out of time to fix).
 
-## Reflection and Self Assessment
-
+Reflection and Self Assessment
 Pradipta Dharmeswara
 Issue 1: Double free
 Initially my code caused a double free, despite my memory management seeming correct.
@@ -64,9 +61,27 @@ Paralell sort tried to access build arguments variables when they were implement
 I had to alter the buildargs function to employ dynamic memory allocation so that the values were preserved across function calls.
 
 Issue 2:
+Although I had an understanding of the pthreads api, I had to combine this knowledge with my understanding of recursion to implement
+recursive threading with the pthreads api. 
 
-A brief description of your implementation approach
-Any challenges you faced and how you solved them
-## Sources Used
 
+Sources Used
 https://www.geeksforgeeks.org/dsa/merge-sort/
+
+Results (5 trials):
+Cutoff 0 (Serial): | 22.80 | 23.64 | 26.39 | 21.56 | 22.24
+Cutoff 1:          | 12.23 | 13.33 | 13.44 | 12.72 | 14.32
+Cutoff 2:          | 8.14  | 8.11  | 8.89  | 8.92  | 8.15
+Cutoff 3:          | 6.58  | 6.60  | 7.22  | 5.97  | 6.28
+Cutoff 4:          | 6.47  | 6.16  | 6.53  | 6.21  | 6.11
+Cutoff 5:          | 6.14  | 7.23  | 6.21  | 6.16  | 7.18
+Cutoff 6:          | 6.69  | 7.50  | 6.66  | 6.38  | 8.24
+Cutoff 7:          | 7.12  | 7.88  | 7.91  | 7.21  | 7.27
+
+Averages:
+
+
+
+
+
+
