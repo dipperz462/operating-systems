@@ -1,18 +1,20 @@
 README.template
 
-## Project Number/Title 
+## Project 67 
 
-* Authors: Your Name, and your group members’ names
-* Group name: Your Group Name
+* Authors: Daisy Rees, Pradipta Dharmeswara
+* Group name: Group 67
 
 ## Overview
-
-Concisely explain what the program does. If this exceeds a couple of
-sentences, you're going too far. Generally, you should be pulling this
-right from the project specification. We don't want you to just cut and
-paste, but paraphrase what is stated in the project specification.
+Parallel and serial implementation of merge sort for arrays of any size.
 
 ## Manifest
+
+Makefile
+mergesort.c  
+mergesort.h  
+README.template  
+test-mergesort.c
 
 A listing of source files and other non-generated files, and a brief
 (one-line) explanation of the purpose of each file.
@@ -28,6 +30,10 @@ possible?
 
 Summarise the main features of your program. It is also appropriate to
 instruct the user how to use your program.
+
+All group member names and student IDs
+A brief description of your implementation approach
+Any challenges you faced and how you solved them
 
 ## Testing
 
@@ -52,6 +58,15 @@ Although I could not test for this issue easily, it ended up being fixed when I 
 for merge(). Initially I had each call sort into B[0], however with parallelisation this did not work out all the time
 since two threads might end up writing into the same memory, which I suspect caused the sorting failures.
 
+Daisy Rees
+Issue 1: 
+Paralell sort tried to access build arguments variables when they were implemented as local variables, and this did not work.
+I had to alter the buildargs function to employ dynamic memory allocation so that the values were preserved across function calls.
+
+Issue 2:
+
+A brief description of your implementation approach
+Any challenges you faced and how you solved them
 ## Sources Used
 
 https://www.geeksforgeeks.org/dsa/merge-sort/
