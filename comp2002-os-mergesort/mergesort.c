@@ -59,22 +59,20 @@ void * parallel_mergesort(void *arg){
 		struct argument *args = (struct argument*) (arg);
 		//base case
 		if(args->left>=args->right) {
-			//free(args);
 			return NULL;}
 		//level case
-		else if(args->level == 0){
+		else if(args->level >= cutoff){
 			my_mergesort(args->left, args->right);
-			//free(args);
 			return NULL;
 		};
 		//if recursion is allowed
 		// get midpoint
 		int mid = args->left + (args->right - args->left) / 2;
 		// create arguments for left thread
-		struct argument * leftArgs = buildArgs(args->left, mid, args->level - 1);
+		struct argument * leftArgs = buildArgs(args->left, mid, args->level + 1);
 
 		// create arguments for right thread
-		struct argument * rightArgs = buildArgs(mid + 1, args->right, args->level - 1);
+		struct argument * rightArgs = buildArgs(mid + 1, args->right, args->level + 1);
 
 		//declares pthread variables
 		pthread_t leftThread;
@@ -90,7 +88,8 @@ void * parallel_mergesort(void *arg){
 
 		//merges sub arrays arranged with left and right threads
 		merge(args->left,mid,mid+1,args->right);
-		//free(args);
+		free(leftArgs);
+		free(rightArgs);
 		return NULL;
 }
 
