@@ -31,9 +31,8 @@ instruct the user how to use your program.
 
 ## Testing
 
-This section should detail how you tested your code. Simply stating "I ran
-it a few times and it seems to work" is not sufficient. Your testing needs
-to be detailed here.
+Tested serial mergesort first using cutoff = 0, once that was verified the parallel mergesort was tested
+using cutoffs 1 to 10
 
 ## Known Bugs
 
@@ -41,17 +40,18 @@ List known bugs that you weren't able to fix (or ran out of time to fix).
 
 ## Reflection and Self Assessment
 
-Discuss the issues you encountered during development and testing. What
-problems did you have? What did you have to research and learn on your own?
-What kinds of errors did you get? How did you fix them?
+Pradipta Dharmeswara
+Issue 1: Double free
+Initially my code caused a double free, despite my memory management seeming correct.
+To fix this, I had to look at the test-mergesort.c file to make sure my frees lined up.
+Thus, I changed from having each call free its own args to freeing the child args in the parent call.
 
-What parts of the project did you find challenging? Is there anything that
-finally "clicked" for you in the process of working on this project? How well
-did the development and testing process go for you?
+Issue 2: Indexing
+Sometimes my sort would fail, however this was inconsistent.
+Although I could not test for this issue easily, it ended up being fixed when I double checked the indexing
+for merge(). Initially I had each call sort into B[0], however with parallelisation this did not work out all the time
+since two threads might end up writing into the same memory, which I suspect caused the sorting failures.
 
 ## Sources Used
 
-If you used any sources outside of the textbook, you should list them here. 
-If you looked something up on stackoverflow.com or you use help from AI, and 
-fail to cite it in this section, it will be considered plagiarism and dealt 
-with accordingly. So be safe CITE!
+https://www.geeksforgeeks.org/dsa/merge-sort/
