@@ -9,21 +9,18 @@
 
 /* this function will be called by mergesort() and also by parallel_mergesort(). */
 void merge(int leftstart, int leftend, int rightstart, int rightend){
-	// Merge will use a temp array B. Create temp iterators for B, and left/right subarrays
-	int index = 0;
+	// Merge will use temp array B. Create temp iterators for B, and left/right subarrays
+	int index = leftstart;
 	int left = leftstart;
 	int right = rightstart;
 	// We iterate through both arrays, copying into B until one subarray is empty.
 	while ((left <= leftend) && (right <= rightend)) {
 		// Compare & insert smaller element, iterating respective pointer
 		if ((A[left] <= A[right])) {
-			B[index] = A[left];
-			left++;
+			B[index++] = A[left++];
 		} else {
-			B[index] = A[right];
-			right++;
+			B[index++] = A[right++];
 		}
-		index++;
 	}
 
 	// Copy remaining elements from the left half
@@ -55,17 +52,17 @@ void my_mergesort(int left, int right){
 
 /* this function will be called by the testing program. */
 void * parallel_mergesort(void *arg){
-		//cast void pointer to struct with args
+		//cast void pointer to argument struct pointer
 		struct argument *args = (struct argument*) (arg);
 		//base case
 		if(args->left>=args->right) {
 			return NULL;}
-		//level case
+		//cutoff case (move from parallel to serial)
 		else if(args->level >= cutoff){
 			my_mergesort(args->left, args->right);
 			return NULL;
 		};
-		//if recursion is allowed
+		//parallel case (level < cutoff)
 		// get midpoint
 		int mid = args->left + (args->right - args->left) / 2;
 		// create arguments for left thread
